@@ -1,51 +1,30 @@
 import Header from "./components/Header";
+import InputSection from "./components/InputSection";
+import OutputSection from "./components/OutputSection";
+import { useState } from "react";
+import {calculateInvestmentResults} from "./util/investment.js";
+
+const INITIAL_INPUT = {
+  initialInvestment: 0,
+  annualInvestment: 0,
+  expectedReturn: 0,
+  duration: 0,
+};
 
 function App() {
+  const [inputs, setInputs] = useState(INITIAL_INPUT);
+
+  let annualData = calculateInvestmentResults(inputs);
+
+  function handleChange(field, value) {
+    setInputs((inputs) => ({ ...inputs, [field]: value }));
+  }
+
   return (
     <>
-      <Header/>
-      <section id="user-input">
-        <div class="input-group">
-          <p>
-            <label>A</label>
-            <input type="number"></input>
-          </p>
-          <p>
-            <label>B</label>
-            <input type="number"></input>
-          </p>
-        </div>
-        <div class="input-group">
-          <p>
-            <label>C</label>
-            <input type="number"></input>
-          </p>
-          <p>
-            <label>D</label>
-            <input type="number"></input>
-          </p>
-        </div>
-      </section>
-      <table id="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>$123</td>
-            <td>$1234</td>
-            <td>$1234</td>
-            <td>$1234</td>
-          </tr>
-        </tbody>
-      </table>
+      <Header />
+      <InputSection onChange={handleChange}/>
+      <OutputSection annualData={annualData} />
     </>
   );
 }
