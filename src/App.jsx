@@ -5,10 +5,10 @@ import { useState } from "react";
 import { calculateInvestmentResults } from "./util/investment.js";
 
 const INITIAL_INPUT = {
-  initialInvestment: 0,
-  annualInvestment: 0,
-  expectedReturn: 0,
-  duration: 0,
+  initialInvestment: 10000,
+  annualInvestment: 1200,
+  expectedReturn: 6,
+  duration: 10,
 };
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   let annualData = calculateInvestmentResults(inputs);
 
   function handleChange(field, value) {
-    setInputs((inputs) => ({ ...inputs, [field]: value }));
+    setInputs((inputs) => ({ ...inputs, [field]: Number(value) }));
   }
 
   return (
