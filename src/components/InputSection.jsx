@@ -1,24 +1,24 @@
 export default function InputSection({onChange, inputs}) {
 
   function handleInitialInvestmentChange(event) {
-    onChange("initialInvestment", event.target.value);
+    onChange("initialInvestment", Number(event.target.value));
   }
 
   function handleAnnualInvestmentChange(event) {
-    onChange("annualInvestment", event.target.value);
+    onChange("annualInvestment", Number(event.target.value));
   }
 
   function handleExpectedReturnChange(event) {
-    onChange("expectedReturn", event.target.value);
+    onChange("expectedReturn", Number(event.target.value));
   }
 
   function handleDurationChange(event) {
-    onChange("duration", event.target.value);
+    onChange("duration", Number(event.target.value));
   }
 
   return (
     <section id="user-input">
-      <div class="input-group">
+      <div className="input-group">
         <p>
           <label>INITIAL INVESTMENT</label>
           <input type="number" value={inputs.initialInvestment} onChange={handleInitialInvestmentChange}></input>
@@ -28,7 +28,7 @@ export default function InputSection({onChange, inputs}) {
           <input type="number" value={inputs.annualInvestment} onChange={handleAnnualInvestmentChange}></input>
         </p>
       </div>
-      <div class="input-group">
+      <div className="input-group">
         <p>
           <label>EXPECTED RETURN</label>
           <input type="number" value={inputs.expectedReturn} onChange={handleExpectedReturnChange}></input>

@@ -1,4 +1,7 @@
-export default function OutputSection({annualData}) {
+import { formatter } from "../util/investment";
+
+export default function OutputSection({ annualData }) {
+  let totalInterest = 0;
   return (
     <table id="result">
       <thead>
@@ -11,13 +14,18 @@ export default function OutputSection({annualData}) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>$123</td>
-          <td>$1234</td>
-          <td>$1234</td>
-          <td>$1234</td>
-        </tr>
+        {annualData.map((data) => {
+          totalInterest += data.interest;
+          return (
+            <tr key={data.year}>
+              <td>{data.year}</td>
+              <td>{formatter.format(data.valueEndOfYear)}</td>
+              <td>{formatter.format(data.interest)}</td>
+              <td>{formatter.format(totalInterest)}</td>
+              <td>{formatter.format(data.valueEndOfYear - totalInterest)}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
